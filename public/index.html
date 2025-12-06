@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alerta: Animais Marinhos em risco — informações, curiosidades, fatos científicos e ações práticas contra descartes e poluição." />
+  <title>Animais Marinhos — Alerta: Proteja os oceanos</title>
+
+  <style>
+    /* ===========================
+       RESET / VARIÁVEIS
+    ============================ */
+    :root {
+      --deep-sea: #021d2f;
+      --sea: #036;
+      --danger: #ff3b30;
+      --warn: #ff9f1c;
+      --accent: #00d4ff;
+      --card: #0b2b36cc;
+      --glass: rgba(255,255,255,0.02);
+      --text: #eaf7ff;
+      --muted: rgba(234,247,255,0.75);
+      --max-width: 1100px;
+      --focus: 3px solid #ffd54a;
+    }
+
+    .light {
+      --card: #ffffffdd;
+      --deep-sea: #0b3b4a;
+      --text: #012;
+      --muted: rgba(1,1,1,0.6);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(255,80,80,0.04), transparent 6%),
+        linear-gradient(180deg, var(--deep-sea) 0%, #002a3a 40%, #001a25 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: calc(100% - 2rem);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* ===========================
+       HEADER
+    ============================ */
+    header {
+      padding: 1rem 0;
+      position: relative;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #005f73, #0a3b56);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #bff7ff;
+    }
+
+    nav {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: .4rem .6rem;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      outline: none;
+      background: rgba(255,255,255,0.03);
+      transform: translateY(-2px);
+    }
+
+    /* ===========================
+       ALERT BANNER
+    ============================ */
+    .alert-banner {
+      margin-top: 1rem;
+      padding: .85rem;
+      border-radius: 12px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      background: linear-gradient(90deg, rgba(255,59,48,0.14), rgba(255,159,28,0.06));
+      border: 1px solid rgba(255,59,48,0.18);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.32);
+    }
+
+    .alert-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--danger), var(--warn));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: white;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    .alert-text strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: .3px;
+    }
+
+    .alert-text p {
+      margin: .2rem 0 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ===========================
+       HERO
+    ============================ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    .hero-left {
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      margin: .2rem 0;
+      font-size: 2rem;
+    }
+
+    .slogan {
+      font-weight: 800;
+      color: var(--warn);
+      font-size: 1.05rem;
+    }
+
+    .lead {
+      margin-top: .6rem;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .welcome {
+      display: inline-block;
+      margin-top: .6rem;
+      padding: .25rem .5rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      font-weight: 700;
+    }
+
+    .danger-flag {
+      display: inline-block;
+      margin-left: .6rem;
+      padding: .15rem .5rem;
+      border-radius: 8px;
+      background: rgba(255,59,48,0.12);
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    /* BOTÕES HERO */
+    .hero-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 10px;
+      padding: .7rem .9rem;
+      font-weight: 800;
+    }
+
+    .btn-danger {
+      background: linear-gradient(90deg, var(--danger), #ff7a5a);
+      color: white;
+      box-shadow: 0 10px 26px rgba(255,59,48,0.16);
+    }
+
+    .btn-muted {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+
+    button:focus {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      align-items: center;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s;
+    }
+
+    .hero-img img:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
+
+    .photo-space {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      border: 1px dashed rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), transparent);
+    }
+
+    /* ===========================
+       SECTION GERAL
+    ============================ */
+    main {
+      flex: 1;
+      padding: 1.25rem 0;
+    }
+
+    section {
+      margin-top: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===========================
+       CURIOSIDADES
+    ============================ */
+    .curiosidades ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .6rem;
+    }
+
+    .curiosidades li {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+      background: var(--card);
+      padding: .8rem;
+      border-radius: 12px;
+      border-left: 4px solid rgba(255,255,255,0.03);
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    /* ===========================
+       CARDS (FATOS)
+    ============================ */
+    .card {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.34);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* ===========================
+       GALERIA
+    ============================ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .55rem;
+    }
+
+    @media (max-width: 1100px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 420px) {
+      .gallery { grid-template-columns: repeat(1, 1fr); }
+    }
+
+    .gallery figure {
+      margin: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.04);
+    }
+
+    /* ===========================
+       FAQ
+    ============================ */
+    details {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: .6rem;
+    }
+
+    summary {
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    summary:focus {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    /* ===========================
+       CTA E FOOTER
+    ============================ */
+    .cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 10px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+    }
+
+    footer {
+      padding: 1rem 0;
+      margin-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+  </style>
+
+  <!-- Bibliotecas -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="container" role="banner" aria-label="Cabeçalho">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+      
+      <!-- BRAND -->
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div class="logo">AM</div>
+        <div>
+          <div style="font-weight:900;font-size:1.05rem;">Animais Marinhos</div>
+          <div style="font-size:.82rem;color:var(--muted);">Alerta: Proteja os oceanos</div>
+        </div>
+      </div>
+
+      <!-- NAV -->
+      <nav aria-label="Navegação principal">
+        <a href="#curiosidades">Curiosidades</a>
+        <a href="#fatos">Fatos</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+    <!-- ALERTA -->
+    <div class="container alert-banner" role="alert" style="margin-top:1rem;">
+      <div class="alert-icon">!</div>
+      <div class="alert-text">
+        <strong>ALERTA: Oceanos em risco</strong>
+        <p>Descarte de plástico, redes de pesca e aquecimento global estão matando animais marinhos.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <h1>Animais Marinhos</h1>
+            <div class="slogan">Ajude os animais <span class="danger-flag">URGENTE</span></div>
+          </div>
+          <div style="font-weight:800;color:var(--warn);">Sinta o alarme</div>
+        </div>
+
+        <p class="lead">
+          Os animais marinhos pedem socorro! Plásticos, redes e mudanças climáticas ameaçam espécies inteiras.
+        </p>
+
+        <div class="welcome">Seja bem-vindo — seu cuidado pode salvar vidas marinhas</div>
+
+        <div class="hero-actions">
+          <button id="abrirIA" class="btn-danger">Reconhecimento Facial</button>
+          <button id="btnAbrirChatbot" class="btn-muted">Abrir Chatbot</button>
+        </div>
+
+        <div style="margin-top:1rem;color:var(--muted);font-weight:700;">
+          Resumo curto: Os animais marinhos pedem socorro — evite descartes indevidos e apoie resgates.
+        </div>
+
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-img">
+          <img src="https://oceanhub.com.br/wp-content/uploads/2020/04/img-baleia-azul.jpg" alt="Imagem hero de animais marinhos" />
+        </div>
+        <div class="photo-space">Espaço para colocar fotos reais</div>
+      </div>
+    </section>
+
+    <!-- CURIOSIDADES -->
+    <section id="curiosidades" class="curiosidades">
+      <h2>Curiosidades</h2>
+
+      <ul>
+        <li>
+          <div class="icon">🐢</div>
+          <div>
+            <strong>Tartarugas retornam à praia</strong>
+            <div class="muted">Praias poluídas e luzes artificiais confundem filhotes.</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="icon">🦁</div>
+          <div>
+            <strong>Leões-marinhos</strong>
+            <div class="muted">Inteligentes, mas vulneráveis ao lixo marinho.</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="icon">🐋</div>
+          <div>
+            <strong>Baleias e sons perdidos</strong>
+            <div class="muted">Ruído de navios atrapalha a comunicação.</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="icon">🍥</div>
+          <div>
+            <strong>Águas-vivas resilientes</strong>
+            <div class="muted">Algumas prosperam em ambientes poluídos.</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="icon">🌊</div>
+          <div>
+            <strong>Oceano: motor do planeta</strong>
+            <div class="muted">A perda de habitats causa impactos globais.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- FATOS -->
+    <section id="fatos">
+      <h2>Fatos / Ciência</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Adaptações ao ambiente marinho</h3>
+          <p>Poluentes e microplásticos afetam fisiologia e reprodução.</p>
+        </article>
+
+        <article class="card">
+          <h3>Comunicação e sentidos</h3>
+          <p>Ruído humano prejudica navegação e reprodução.</p>
+        </article>
+
+        <article class="card">
+          <h3>Importância ecológica</h3>
+          <p>A perda de corais altera cadeias alimentares inteiras.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+      <h2>Galeria</h2>
+      <p class="muted">Imagens mostram beleza e perigo dos oceanos.</p>
+
+      <div class="gallery">
+        <figure>
+          <img src="https://ep00.epimg.net/elpais/imagenes/2017/02/13/album/1486983302_575766_1486998906_album_normal.jpg" alt="Tartaruga em rede" />
+          <figcaption>Tartaruga em risco</figcaption>
+        </figure>
+
+        <figure>
+          <img src="https://s2-oglobo.glbimg.com/RLFyBXF78WcVxtIexZlBdhktci8=/0x0:6048x4024/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2023/C/q/6pi8S8Q8KqhJp0qnkzng/103292042-garbage-including-plastic-waste-is-seen-at-paparo-beach-in-miranda-state-venezuela-on.jpg" alt="Tartaruga em rede" />
+          <figcaption>Praia Poluída</figcaption>
+        </figure>
+
+        <figure>
+          <img src="https://cdn.oantagonista.com/uploads/2024/05/site-baleiasjubarte-0-1140.webp" alt="Baleia" />
+          <figcaption>Baleia-jubarte migrando</figcaption>
+        </figure>
+
+        <figure>
+          <img src="https://theuniplanet.com/wp-content/uploads/2017/05/tartaruga_rede_pesca.jpg" alt="Rede abandonada" />
+          <figcaption>Redes fantasma</figcaption>
+        </figure>
+      </div>
+    </section>
+
+        <!-- CRÉDITOS / FONTES -->
+    <aside aria-labelledby="fontes-title" style="margin-top:18px; padding:14px; border-radius:10px; background:var(--card); box-shadow:var(--shadow)">
+      <h3 id="fontes-title">Créditos & Fontes</h3>
+      <p style="margin:6px 0">Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)</p>
+      <p style="margin:6px 0">Ocean Generation — informações sobre espécies ameaçadas</p>
+      <p style="margin:6px 0">National Oceanic and Atmospheric Administration (NOAA) — ciência oceânica</p>
+    </aside>
+    
+    <!-- Continuação do restante da sua página... -->
+
+  </main>
+
+<!-- Chatbot -->
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+<df-messenger
+  intent="WELCOME"
+  chat-title="ECOBOT"
+  agent-id="6c106d6c-eef7-41db-92b4-5bf82848937e"
+  language-code="pt-br">
+</df-messenger>
+
+   <!-- Modal da câmera (inicialmente escondido) -->
+  <div id="cameraModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <button id="fecharModal" class="botao-fechar" title="Fechar">❌</button>
+      <h2 class="modal-title">Reconhecimento Facial</h2>
+      <div class="video-wrap">
+        <video id="video" autoplay muted playsinline></video>
+      </div>
+      <div class="controls">
+        <button id="tirarFoto" class="botao-foto" title="Tirar foto">📸</button>
+      </div>
+      <p id="modalStatus" class="modal-status">Aguardando...</p>
+      <canvas id="fotoCanvas" style="display:none;"></canvas>
+    </div>
+  </div>
+   <!-- Script principal -->
+  <script defer src="script.js"></script>
+
+</body>
+</html>
+
+
+
